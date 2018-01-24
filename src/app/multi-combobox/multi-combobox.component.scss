@@ -1,0 +1,46 @@
+
+
+.policy-one-block {
+  display: flex;
+}
+
+.policy-one,
+.policy-two {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-right: 30px;
+}
+
+.policy-three {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+select, input {
+  padding: 5px 10px;
+  min-width: 200px;
+  box-sizing: border-box;
+}
+
+input {
+  margin-bottom: 5px;
+}
+
+.policy-two-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.policy {
+  display: flex;
+  flex-direction: column;
+}
+
+.policy-one-block {
+  display: flex;
+
+  > * {
+    flex: 1;
+  }
+
+}

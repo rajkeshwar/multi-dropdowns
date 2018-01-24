@@ -1,0 +1,61 @@
+<p>
+  multi-combobox works!
+</p>
+
+<div class="policy">
+  <div class="policy-one-block" *ngFor="let leOne of levelOneList">
+      <div class="policy-one">
+        <select name="levelOne" [(ngModel)]="leOne.value" 
+          (ngModelChange)="levelOneChange($event, leOne)">
+          <option value="proccess">Proccess</option>
+          <option value="parentProccess">Parent Proccess</option>
+          <option value="networkSummary">Network Summary</option>
+        </select>
+        <i class="fa fa-minus" *ngIf="leOne.minus" (click)="minus(levelOneList, leOne)"></i>
+        <i class="fa fa-plus" *ngIf="leOne.plus" (click)="addOne()"></i>
+      </div>
+
+      <div class="policy-two-block">
+        <div class="policy-three-cont" *ngFor="let leTwo of leOne.levelTwoList">
+          <div class="policy-two">
+              <select name="levelTwo" [(ngModel)]="leTwo.value"
+              (ngModelChange)="levelChange(leTwo)">
+                <option value="user">User</option>
+                <option value="path">path</option>
+                <option value="pathStartsWith">pathStartsWith</option>
+                <option value="pathEndsWith">pathEndsWith</option>
+              </select>
+              <i class="fa fa-minus" *ngIf="leTwo.minus" (click)="minus(leOne.levelTwoList, leTwo)"></i>
+              <i class="fa fa-plus" *ngIf="leTwo.plus" (click)="addTwo(leOne)"></i>
+          </div>
+          <div class="policy-two-value" *ngFor="let input of leTwo.values">
+            <input type="text" [(ngModel)]="input.value">
+            <i class="fa fa-minus" *ngIf="input.minus" (click)="minus(leTwo.values, input)"></i>
+            <i class="fa fa-plus" *ngIf="input.plus" (click)="addInput(leTwo.values)"></i>
+          </div>
+        </div>
+      </div>
+      
+      <div class="policy-three-block">
+        <div class="policy-three-cont" *ngFor="let leThree of leOne.levelThreeList">
+            <div class="policy-three">
+                <select name="levelThree" [(ngModel)]="leThree.key"
+                  (ngModelChange)="levelChange(leThree)">
+                  <option value="tags">tags</option>
+                  <option value="email">email</option>
+                  <option value="isolate">isolate</option>
+                </select>
+                <i class="fa fa-minus" *ngIf="leThree.minus" (click)="minus(leOne.levelThreeList, leTwo)"></i>
+                <i class="fa fa-plus" *ngIf="leThree.plus" (click)="addThree(leOne)"></i>
+            </div>
+            <div class="policy-three-value" *ngFor="let input of leThree.values">
+              <input type="text" [(ngModel)]="input.value">
+              <i class="fa fa-minus" *ngIf="input.minus" (click)="minus(leThree.values, input)"></i>
+              <i class="fa fa-plus" *ngIf="input.plus" (click)="addInput(leThree.values)"></i>
+            </div>
+        </div>
+        
+      </div>
+  </div>
+ 
+</div>
