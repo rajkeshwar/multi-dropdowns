@@ -8,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class MultiComboboxComponent {
 
   public levelOneList = [];
+  public levelThreeList = [];
 
   public objectOne = {
     value: '',
     plus: true,
     minus: true,
-    levelTwoList: [],
-    levelThreeList: []
+    levelTwoList: []
   };
 
   public objectTwo = {
@@ -28,13 +28,17 @@ export class MultiComboboxComponent {
   }
 
   public addOne() {
-    this.resetPlus('levelOneList');
+
+    this.levelOneList = this.levelOneList.map(control => {
+      control.plus = false;
+      return control;
+    });
+
     this.levelOneList.push({
       value: '',
       plus: true,
       minus: true,
-      levelTwoList: [],
-      levelThreeList: []
+      levelTwoList: []
     });
   }
 
@@ -53,13 +57,13 @@ export class MultiComboboxComponent {
     
   }
 
-  public addThree( leOne ) {
+  public addThree() {
     
-    leOne.levelThreeList.forEach(control => {
+    this.levelThreeList.forEach(control => {
       control.plus = false;
     });
 
-    leOne.levelThreeList.push({
+    this.levelThreeList.push({
       key: '',
       values: [],
       plus: true,
@@ -79,22 +83,21 @@ export class MultiComboboxComponent {
     })
   }
 
-  public resetPlus( listReference ) {
-    this[listReference] = this[listReference].map(control => {
-      control.plus = false;
-      return control;
-    });
-  }
-
   public levelOneChange(levelName, item) {
-    ['levelTwoList', 'levelThreeList'].forEach(dropdownName => {
-      const index = this.levelOneList.indexOf(item);
-      this.levelOneList[index][dropdownName].push({
-        key: '',
-        values: [],
-        plus: true,
-        minus: true
-      });
+
+    const index = this.levelOneList.indexOf(item);
+    this.levelOneList[index].levelTwoList.push({
+      key: '',
+      values: [],
+      plus: true,
+      minus: true
+    });
+
+    this.levelThreeList.push({
+      key: '',
+      values: [],
+      plus: true,
+      minus: true
     });
   }
 
@@ -109,7 +112,9 @@ export class MultiComboboxComponent {
   minus(controlList, item) {
     const index = controlList.indexOf(item);
     controlList.splice(index, 1);
-    controlList[controlList.length-1].plus = true;
+    if(controlList[controlList.length-1]) {
+      controlList[controlList.length-1].plus = true;
+    }
   }
 
 }

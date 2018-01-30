@@ -1,5 +1,27 @@
 
 
+.policy {
+  display: flex;
+
+  .policy-one-block {
+    display: flex;
+    border: 1px solid red;
+  }
+
+  .policy-three-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+  }
+}
+
+.policy-one-row {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+}
+
 .policy-one-block {
   display: flex;
 }
@@ -27,11 +49,6 @@ input {
 }
 
 .policy-two-block {
-  display: flex;
-  flex-direction: column;
-}
-
-.policy {
   display: flex;
   flex-direction: column;
 }
